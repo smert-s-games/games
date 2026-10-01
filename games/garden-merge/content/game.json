@@ -1,0 +1,26 @@
+{
+  "items": [
+    { "name": { "ru": "Семечко", "en": "Seed" }, "score": 2 },
+    { "name": { "ru": "Росток", "en": "Sprout" }, "score": 4 },
+    { "name": { "ru": "Куст", "en": "Bush" }, "score": 8 },
+    { "name": { "ru": "Бутон", "en": "Bud" }, "score": 16 },
+    { "name": { "ru": "Цветок", "en": "Flower" }, "score": 32 },
+    { "name": { "ru": "Ягоды", "en": "Berries" }, "score": 64 },
+    { "name": { "ru": "Варенье", "en": "Jam" }, "score": 128 },
+    { "name": { "ru": "Дерево", "en": "Tree" }, "score": 256 }
+  ],
+  "spawn": [1, 1, 1, 2],
+  "spawnCount": 1,
+  "levels": [
+    { "cols": 4, "rows": 4, "goalTier": 3, "moves": 16, "fill": 0.5, "spawn": [1, 1, 1], "seed": [1, 1, 1] },
+    { "cols": 4, "rows": 4, "goalTier": 4, "moves": 28, "fill": 0.55, "spawn": [1, 1, 1, 2], "seed": [1, 1, 2] },
+    { "cols": 5, "rows": 4, "goalTier": 4, "moves": 32, "fill": 0.55, "spawn": [1, 1, 2], "seed": [1, 1, 2] },
+    { "cols": 5, "rows": 5, "goalTier": 5, "moves": 42, "fill": 0.55, "spawn": [1, 1, 2, 2], "seed": [1, 2, 2] },
+    { "cols": 5, "rows": 5, "goalTier": 5, "moves": 40, "fill": 0.6, "spawn": [1, 1, 2], "seed": [1, 2, 2] },
+    { "cols": 5, "rows": 5, "goalTier": 6, "moves": 58, "fill": 0.55, "spawn": [1, 2, 2, 3], "seed": [1, 2, 2, 3] },
+    { "cols": 5, "rows": 6, "goalTier": 6, "moves": 64, "fill": 0.55, "spawn": [1, 2, 2, 3], "seed": [2, 2, 3] },
+    { "cols": 5, "rows": 6, "goalTier": 7, "moves": 78, "fill": 0.5, "spawn": [1, 2, 2, 3], "seed": [2, 3, 3] },
+    { "cols": 6, "rows": 6, "goalTier": 7, "moves": 88, "fill": 0.5, "spawn": [1, 2, 3, 3], "seed": [2, 3, 3] },
+    { "cols": 6, "rows": 6, "goalTier": 8, "moves": 110, "fill": 0.5, "spawn": [2, 2, 3, 3], "seed": [2, 3, 3, 4] }
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "images": [
+    "theme/images/bg.png",
+    "theme/images/item-{n}.png"
+  ],
+  "files": [
+    "content/game.json",
+    "theme/theme.json",
+    "theme/texts/ru.json",
+    "theme/texts/en.json"
+  ],
+  "textKeys": [
+    "play",
+    "how",
+    "goal",
+    "moves",
+    "score",
+    "level",
+    "best",
+    "pause",
+    "resume",
+    "menu",
+    "winTitle",
+    "winText",
+    "next",
+    "loseMoves",
+    "loseStuck",
+    "continueAd",
+    "restart",
+    "adFail",
+    "result",
+    "loading",
+    "chain"
+  ],
+  "themeKeys": ["background", "board", "cell", "accent", "text", "hudText"]
+}

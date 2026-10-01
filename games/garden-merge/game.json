@@ -1,0 +1,10 @@
+{
+  "id": "garden-merge",
+  "template": "merge",
+  "orientation": "portrait",
+  "status": "draft",
+  "title": {
+    "ru": "Сад слияний",
+    "en": "Garden Merge"
+  }
+}

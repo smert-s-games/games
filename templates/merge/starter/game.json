@@ -1,0 +1,10 @@
+{
+  "id": "merge-starter",
+  "template": "merge",
+  "orientation": "portrait",
+  "status": "draft",
+  "title": {
+    "ru": "Новое слияние",
+    "en": "New merge"
+  }
+}

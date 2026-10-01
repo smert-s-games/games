@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+  <meta name="mobile-web-app-capable" content="yes">
+  <title>{{TITLE}}</title>
+  <link rel="stylesheet" href="shell.css">
+  <style>:root { {{THEME_STYLE}} }</style>
+</head>
+<body>
+  <div id="app">
+    <div id="field">
+      <header id="hud">
+        <div class="hud-block">
+          <span class="hud-label" id="label-level"></span>
+          <strong id="value-level"></strong>
+        </div>
+        <div class="hud-goal" id="hud-goal">
+          <canvas id="goal-icon" width="72" height="72"></canvas>
+          <div>
+            <span class="hud-label" id="label-goal"></span>
+            <strong id="value-goal"></strong>
+          </div>
+        </div>
+        <div class="hud-side">
+          <button id="btn-pause" type="button" aria-label="pause">II</button>
+          <div class="hud-block hud-right">
+            <span class="hud-label" id="label-score"></span>
+            <strong id="value-score"></strong>
+            <span class="hud-sub" id="value-moves"></span>
+          </div>
+        </div>
+      </header>
+      <div id="board-wrap">
+        <canvas id="board"></canvas>
+      </div>
+      <p id="hint"></p>
+      <div id="modal" hidden>
+        <div id="modal-card">
+          <h1 id="modal-title"></h1>
+          <p id="modal-text"></p>
+          <div id="chain" hidden></div>
+          <div id="modal-actions"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>window.GAME_ID = "{{GAME_ID}}"; window.GAME_TITLE = {{TITLE_JSON}};</script>
+  <script src="/sdk.js"></script>
+  <script src="js/yandex.js"></script>
+  <script src="js/merge.js"></script>
+  <script src="js/view.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

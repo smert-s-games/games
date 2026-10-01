@@ -1,0 +1,9 @@
+{
+  "background": "#8ecf6a",
+  "board": "#fff8ee",
+  "cell": "#e7f6d8",
+  "accent": "#2c8a45",
+  "text": "#1d3a24",
+  "hudText": "#14301c",
+  "danger": "#c4473a"
+}

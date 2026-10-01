@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <title>merge-tests</title>
+</head>
+<body>
+<pre id="out"></pre>
+<script src="../templates/merge/engine/merge.js"></script>
+<script>
+(function () {
+  var failures = [];
+  function check(name, condition) {
+    if (!condition) failures.push(name);
+  }
+  var content = {
+    items: [2, 4, 8, 16].map(function (score, index) {
+      return { name: { ru: "a" + index, en: "a" + index }, score: score };
+    }),
+    spawn: [1],
+    spawnCount: 1,
+    levels: [
+      { cols: 4, rows: 4, goalTier: 3, moves: 5, fill: 0, spawn: [1], seed: [1] },
+      { cols: 5, rows: 4, goalTier: 4, moves: 8, fill: 0, spawn: [1, 2], seed: [1] }
+    ]
+  };
+  function zero() { return 0; }
+  var game = MergeGame.createGame(content, { level: 0, best: 10 });
+  game.startLevel(0, zero);
+  check("pair placed", game.state.grid[0][0] === 1 && game.state.grid[0][1] === 1);
+  check("best kept", game.state.best === 10);
+  check("reject same cell", game.canMerge({ c: 0, r: 0 }, { c: 0, r: 0 }) === false);
+  check("reject different", (function () {
+    game.state.grid[0][2] = 2;
+    return game.canMerge({ c: 0, r: 0 }, { c: 2, r: 0 }) === false;
+  })());
+
+  var merged = game.merge({ c: 0, r: 0 }, { c: 1, r: 0 }, zero);
+  check("merge ok", merged.ok && merged.next === 2);
+  check("score", game.state.score === 4 && game.state.best === 10);
+  check("moves", game.state.movesLeft === 4);
+  check("spawned source", game.state.grid[0][0] === 1);
+  check("result cell", game.state.grid[0][1] === 2);
+  check("still playing", merged.result === "play");
+
+  game.state.grid = [
+    [2, 2, 0, 0],
+    [0, 0, 0, 0],
+    [0, 0, 0, 0],
+    [0, 0, 0, 0]
+  ];
+  game.state.movesLeft = 1;
+  game.state.phase = "play";
+  var won = game.merge({ c: 0, r: 0 }, { c: 1, r: 0 }, zero);
+  check("win beats empty moves", won.result === "win" && won.next === 3);
+
+  game.startLevel(0, zero);
+  game.state.grid = [
+    [2, 2, 0, 0],
+    [0, 0, 0, 0],
+    [0, 0, 0, 0],
+    [0, 0, 0, 0]
+  ];
+  game.state.goalTier = 4;
+  game.state.movesLeft = 5;
+  game.state.phase = "play";
+  var stuck = game.merge({ c: 0, r: 0 }, { c: 1, r: 0 }, zero);
+  check("stuck", stuck.result === "lose" && game.state.loseReason === "stuck");
+  var movesBefore = game.state.movesLeft;
+  game.grantContinue();
+  check("continue", game.state.phase === "play" && game.state.movesLeft === movesBefore + 10);
+  check("continue opens a move", game.findMoves().length > 0);
+
+  game.state.phase = "play";
+  game.state.grid[0][0] = 4;
+  game.state.grid[0][1] = 4;
+  check("max tier locked", game.canMerge({ c: 0, r: 0 }, { c: 1, r: 0 }) === false);
+
+  game.startLevel(0, zero, { keepScore: true });
+  check("no goal on start", game.cells().every(function (cell) { return cell.tier < 3; }));
+
+  content.levels[0].seed = [3, 3, 3];
+  content.levels[0].fill = 1;
+  game.startLevel(0, zero);
+  check("seed cannot start on the goal", game.cells().every(function (cell) { return cell.tier < game.state.goalTier; }));
+  check("seed still playable", game.findMoves().length > 0);
+
+  game.startLevel(1, zero);
+  check("second level size", game.state.cols === 5 && game.state.rows === 4 && game.state.goalTier === 4);
+  game.startLevel(8, zero);
+  check("endless starts", game.state.phase === "play" && game.state.movesLeft >= 24);
+
+  game.startLevel(0, zero);
+  game.state.best = 0;
+  game.state.score = 0;
+  game.state.grid[0][0] = 1;
+  game.state.grid[0][1] = 1;
+  game.state.phase = "play";
+  game.merge({ c: 0, r: 0 }, { c: 1, r: 0 }, zero);
+  check("best updates", game.state.best === 4);
+
+  var out = document.getElementById("out");
+  if (failures.length) {
+    document.title = "FAIL";
+    out.textContent = failures.join("\n");
+  } else {
+    document.title = "PASS";
+    out.textContent = "PASS";
+  }
+})();
+</script>
+</body>
+</html>

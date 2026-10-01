@@ -1,0 +1,23 @@
+{
+  "play": "Play",
+  "how": "Drag an item onto the same one to grow the chain.",
+  "goal": "Goal",
+  "moves": "Moves",
+  "score": "Score",
+  "level": "Level",
+  "best": "Best",
+  "pause": "Pause",
+  "resume": "Resume",
+  "menu": "Menu",
+  "winTitle": "Level clear",
+  "winText": "The chain grew. The next level is a little harder.",
+  "next": "Next",
+  "loseMoves": "Out of moves",
+  "loseStuck": "No merges left",
+  "continueAd": "10 more moves for an ad",
+  "restart": "Restart level",
+  "adFail": "The ad was not finished, so there is no reward.",
+  "result": "Result",
+  "loading": "Loading",
+  "chain": "Chain"
+}
